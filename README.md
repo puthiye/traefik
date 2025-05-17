@@ -68,6 +68,12 @@ C:\Windows\System32\drivers\etc
 ```
 192.168.10.129 home.lan
 192.168.10.129 adguard.home.lan
+
+C:\Users\unni_>ping home.lan
+
+Pinging home.lan [192.168.10.129] with 32 bytes of data:
+Reply from 192.168.10.129: bytes=32 time=5ms TTL=62
+Reply from 192.168.10.129: bytes=32 time=7ms TTL=62
 ```
 
 **NOTE:::::: restart both service using to pick up changes !!**
