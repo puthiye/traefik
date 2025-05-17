@@ -66,9 +66,18 @@ C:\Windows\System32\drivers\etc
 192.168.10.129 adguard.home.lan
 ```
 ## How to access via traefik
-
 Service - http://adguard.home.lan/ <br/>
-Traefik dashboard - http://home.lan:8080/       
+Traefik dashboard - http://home.lan:8080/      
+
+## Phone 
+Set your iPhone to use OpenWrt as DNS server:
+```
+Go to: Settings → Wi-Fi → (i icon) → Configure DNS
+Choose Manual → Add Server: <IP of OpenWrt router>
+```
+In OpenWrt dnsmasq.conf
+
+
 
 
 
