@@ -61,12 +61,13 @@ server.port=80   - tells Traefik which port inside the container to forward requ
 ## Windows Host file
 
 C:\Windows\System32\drivers\etc
+```
 192.168.10.129 home.lan
 192.168.10.129 adguard.home.lan
-
+```
 ## How to access via traefik
 
-Service - http://adguard.home.lan/
+Service - http://adguard.home.lan/ <br/>
 Traefik dashboard - http://home.lan:8080/       
 
 
