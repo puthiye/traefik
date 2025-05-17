@@ -53,7 +53,7 @@ This means Traefik will accept incoming HTTP traffic on port 80.
 ```
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguardhome.rule=Host(`adguard.home.lan`)"
+      - "traefik.http.routers.adguardhome.rule=Host(`ad.home.lan`)"
       - "traefik.http.routers.adguardhome.entrypoints=web"
       - "traefik.http.services.adguardhome.loadbalancer.server.port=80"
 ```
@@ -69,8 +69,13 @@ C:\Windows\System32\drivers\etc
 192.168.10.129 home.lan
 192.168.10.129 adguard.home.lan
 ```
+
+**NOTE:::::: restart both service using to pick up changes !!**
+ docker compose down
+ docker compose up -d
+
 ## How to access via traefik
-Service - http://adguard.home.lan/ <br/>
+Service - http://ad.home.lan/ <br/>
 Traefik dashboard - http://home.lan:8080/      
 
 ## Phone 
@@ -79,7 +84,20 @@ Set your iPhone to use OpenWrt as DNS server:
 Go to: Settings → Wi-Fi → (i icon) → Configure DNS
 Choose Manual → Add Server: <IP of OpenWrt router>
 ```
-In OpenWrt dnsmasq.conf
+In OpenWrt dnsmasq.conf   << MORE TO ADD HERE >>>>
+
+
+## Troubleshooting
+
+docker exec -it traefik sh
+apk add --no-cache curl  # if curl not installed
+curl http://adguardhome:80
+
+//check adguard is listening on port 80
+docker exec -it adguardhome netstat -tlnp
+
+If not, switch from adguardhome.loadbalancer.server.port=80 to 3000
+
 
 
 
