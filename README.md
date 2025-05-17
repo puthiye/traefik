@@ -57,3 +57,17 @@ adguardhome      - name of the container service
 traefik.enable   - enables Traefik to manage this container.
 rule=Host        - Traefik will route any request with the Host header matching adguard.home.lan to this container
 server.port=80   - tells Traefik which port inside the container to forward requests to.
+
+## Windows Host file
+
+C:\Windows\System32\drivers\etc
+192.168.10.129 home.lan
+192.168.10.129 adguard.home.lan
+
+## How to access via traefik
+
+Service - http://adguard.home.lan/
+Traefik dashboard - http://home.lan:8080/       
+
+
+
