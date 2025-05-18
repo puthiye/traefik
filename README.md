@@ -89,7 +89,6 @@ Set your iPhone to use OpenWrt as DNS server:
 ```
 Go to: Settings → Wi-Fi → (i icon) → Configure DNS
 Choose Manual → Add Server: <IP of OpenWrt router = 10.0.0.110>
-```
 
 root@OpenWrt:~# cat /tmp/resolv.conf.d/resolv.conf.auto
 **This file contains the automatically assigned DNS servers from your WAN interface (usually from your ISP or DHCP).**
@@ -133,7 +132,7 @@ config dnsmasq
         option localservice '1'
         option ednspacket_max '1232'
         list address '/.home.lan/192.168.10.129'
-
+```
 ## Troubleshooting
 
 docker exec -it traefik sh
