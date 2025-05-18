@@ -89,9 +89,10 @@ Set your iPhone to use OpenWrt as DNS server:
 ```
 Go to: Settings → Wi-Fi → (i icon) → Configure DNS
 Choose Manual → Add Server: <IP of OpenWrt router = 10.0.0.110>
-
+```
 root@OpenWrt:~# cat /tmp/resolv.conf.d/resolv.conf.auto
 **This file contains the automatically assigned DNS servers from your WAN interface (usually from your ISP or DHCP).**
+
 nameserver 1.1.1.1
 nameserver 8.8.8.8
 
@@ -99,8 +100,10 @@ or
 
 root@OpenWrt:/etc# uci show network.wan.dns
 network.wan.dns='1.1.1.1' '8.8.8.8'
+```
 
 **Force .lan domain to resolve locally instead of going to upstream DNS**
+```
 uci add_list dhcp.@dnsmasq[0].address='/.home.lan/192.168.10.129'                  <---- /.home indicates wildecard
 uci set dhcp.@dnsmasq[0].domain='home.lan'
 uci set dhcp.@dnsmasq[0].local='/home.lan/'
@@ -108,7 +111,9 @@ uci commit dhcp
 /etc/init.d/dnsmasq restart
 
 - where 192.168.10.129 is the ip of pi4 where adguardhome container runs.
+```
 
+```
 root@OpenWrt:/etc# cat /etc/resolv.conf
 search home.lan
 nameserver 127.0.0.1
