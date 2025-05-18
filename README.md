@@ -65,7 +65,7 @@ server.port=80   - tells Traefik which port inside the container to forward requ
 ## Windows Host file
 
 C:\Windows\System32\drivers\etc
-```
+
 192.168.10.129 home.lan
 192.168.10.129 adguard.home.lan
 
@@ -74,10 +74,10 @@ C:\Users\unni_>ping home.lan
 Pinging home.lan [192.168.10.129] with 32 bytes of data:
 Reply from 192.168.10.129: bytes=32 time=5ms TTL=62
 Reply from 192.168.10.129: bytes=32 time=7ms TTL=62
-```
+
 
 **NOTE:::::: restart both service using to pick up changes !!**
-```
+
  docker compose down
  docker compose up -d
 
@@ -87,10 +87,10 @@ Traefik dashboard - http://home.lan:8080/
 
 ## Phone 
 Set your iPhone to use OpenWrt as DNS server:
-```
+
 Go to: Settings → Wi-Fi → (i icon) → Configure DNS
 Choose Manual → Add Server: <IP of OpenWrt router = 10.0.0.110>
-```
+
 root@OpenWrt:~# cat /tmp/resolv.conf.d/resolv.conf.auto
 **This file contains the automatically assigned DNS servers from your WAN interface (usually from your ISP or DHCP).**
 
@@ -101,10 +101,10 @@ or
 
 root@OpenWrt:/etc# uci show network.wan.dns
 network.wan.dns='1.1.1.1' '8.8.8.8'
-```
+
 
 **Force .lan domain to resolve locally instead of going to upstream DNS**
-```
+
 uci add_list dhcp.@dnsmasq[0].address='/.home.lan/192.168.10.129'                  <---- /.home indicates wildecard
 uci set dhcp.@dnsmasq[0].domain='home.lan'
 uci set dhcp.@dnsmasq[0].local='/home.lan/'
@@ -112,9 +112,7 @@ uci commit dhcp
 /etc/init.d/dnsmasq restart
 
 - where 192.168.10.129 is the ip of pi4 where adguardhome container runs.
-```
 
-```
 root@OpenWrt:/etc# cat /etc/resolv.conf
 search home.lan
 nameserver 127.0.0.1
@@ -138,7 +136,7 @@ config dnsmasq
         option localservice '1'
         option ednspacket_max '1232'
         list address '/.home.lan/192.168.10.129'
-```
+
 ## Troubleshooting
 
 docker exec -it traefik sh
