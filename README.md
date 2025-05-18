@@ -61,7 +61,7 @@ adguardhome      - name of the container service
 traefik.enable   - enables Traefik to manage this container.
 rule=Host        - Traefik will route any request with the Host header matching adguard.home.lan to this container
 server.port=80   - tells Traefik which port inside the container to forward requests to.
-
+```
 ## Windows Host file
 
 C:\Windows\System32\drivers\etc
@@ -77,6 +77,7 @@ Reply from 192.168.10.129: bytes=32 time=7ms TTL=62
 ```
 
 **NOTE:::::: restart both service using to pick up changes !!**
+```
  docker compose down
  docker compose up -d
 
