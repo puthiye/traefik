@@ -56,7 +56,7 @@ This means Traefik will accept incoming HTTP traffic on port 80.
       - "traefik.http.routers.adguardhome.rule=Host(`ad.home.lan`)"
       - "traefik.http.routers.adguardhome.entrypoints=web"
       - "traefik.http.services.adguardhome.loadbalancer.server.port=80"
-```
+
 adguardhome      - name of the container service
 traefik.enable   - enables Traefik to manage this container.
 rule=Host        - Traefik will route any request with the Host header matching adguard.home.lan to this container
