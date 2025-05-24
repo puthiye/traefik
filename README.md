@@ -105,7 +105,7 @@ network.wan.dns='1.1.1.1' '8.8.8.8'
 
 **Force .lan domain to resolve locally instead of going to upstream DNS**
 ```
-uci add_list dhcp.@dnsmasq[0].address='/.home.lan/192.168.10.129'                  <---- /.home indicates wildecard
+uci add_list dhcp.@dnsmasq[0].address='/.home.lan/192.168.10.129'          <---- /.home indicates wildcard
 uci set dhcp.@dnsmasq[0].domain='home.lan'
 uci set dhcp.@dnsmasq[0].local='/home.lan/'
 uci commit dhcp
