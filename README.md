@@ -27,22 +27,6 @@ networks:
     external: true
 ```
 
-## traefik docker compose
-```
-services:
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    restart: unless-stopped
-    command:
-      - "--entrypoints.web.address=:80"
-      - "--api.dashboard=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-    ports:
-      - "80:80"         # HTTP traffic
-      - "8080:8080"     # Traefik dashboard
-```
 Host Port 80 → Container Port 80
 Traefik listens on port 80 inside the container (--entrypoints.web.address=:80).
 This means Traefik will accept incoming HTTP traffic on port 80.
@@ -67,7 +51,7 @@ server.port=80   - tells Traefik which port inside the container to forward requ
 C:\Windows\System32\drivers\etc
 ```
 192.168.10.129 home.lan
-192.168.10.129 adguard.home.lan
+192.168.10.129 ad.home.lan
 
 C:\Users\unni_>ping home.lan
 
