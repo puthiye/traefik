@@ -69,60 +69,6 @@ Reply from 192.168.10.129: bytes=32 time=7ms TTL=62
 Service - http://ad.home.lan/ <br/>
 Traefik dashboard - http://home.lan:8080/      
 
-## Phone 
-Set your iPhone to use OpenWrt as DNS server:
-
-Go to: Settings → Wi-Fi → (i icon) → Configure DNS</br>
-Choose Manual → Add Server: <IP of OpenWrt router = 10.0.0.110>
-
-root@OpenWrt:~# cat /tmp/resolv.conf.d/resolv.conf.auto
-**This file contains the automatically assigned DNS servers from your WAN interface (usually from your ISP or DHCP).**
-```
-nameserver 1.1.1.1
-nameserver 8.8.8.8
-
-or
-
-root@OpenWrt:/etc# uci show network.wan.dns
-network.wan.dns='1.1.1.1' '8.8.8.8'
-```
-
-**Force .lan domain to resolve locally instead of going to upstream DNS**
-```
-uci add_list dhcp.@dnsmasq[0].address='/.home.lan/192.168.10.129'          <---- /.home indicates wildcard
-uci set dhcp.@dnsmasq[0].domain='home.lan'
-uci set dhcp.@dnsmasq[0].local='/home.lan/'
-uci commit dhcp
-/etc/init.d/dnsmasq restart
-```
-- where 192.168.10.129 is the ip of pi4 where adguardhome container runs.
-
-
-```
-root@OpenWrt:/etc# cat /etc/resolv.conf
-search home.lan
-nameserver 127.0.0.1
-nameserver ::1
-
-root@OpenWrt:~# cat /etc/config/dhcp
-
-config dnsmasq
-        option domainneeded '1'
-        option localise_queries '1'
-        option rebind_protection '1'
-        option rebind_localhost '1'
-        option local '/home.lan/'
-        option domain 'home.lan'
-        option expandhosts '1'
-        option cachesize '1000'
-        option authoritative '1'
-        option readethers '1'
-        option leasefile '/tmp/dhcp.leases'
-        option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
-        option localservice '1'
-        option ednspacket_max '1232'
-        list address '/.home.lan/192.168.10.129'
-```
 ## Troubleshooting
 
 docker exec -it traefik sh
